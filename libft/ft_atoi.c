@@ -3,47 +3,36 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nsmail <nsmail@student.42.fr>              +#+  +:+       +#+        */
+/*   By: nkalkoul <nkalkoul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/29 04:33:19 by nsmail            #+#    #+#             */
-/*   Updated: 2025/05/04 18:43:23 by nsmail           ###   ########.fr       */
+/*   Created: 2024/06/02 02:10:26 by nas91             #+#    #+#             */
+/*   Updated: 2025/10/28 08:44:05 by nkalkoul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_atoi(const char *nb)
+int	ft_atoi(const char *s1)
 {
-	int	i;
-	int	neg;
-	int	res;
+	int		i;
+	int		nbr;
+	int		sign;
 
-	res = 0;
+	sign = 1;
 	i = 0;
-	neg = 0;
-	while ((nb[i] >= 9 && nb[i] <= 13) || nb[i] == 32)
+	nbr = 0;
+	while (s1[i] && ((s1[i] >= 9 && s1[i] <= 13) || s1[i] == 32))
 		i++;
-	if (nb[i] == '-' || nb[i] == '+')
+	if (s1[i] == '-' || s1[i] == '+')
 	{
-		if (nb[i] == '-')
-			neg = 1;
+		if (s1[i] == '-')
+			sign = -1;
 		i++;
 	}
-	while (nb[i] >= '0' && nb[i] <= '9')
+	while (s1[i] && ft_isdigit(s1[i]) == 1)
 	{
-		res = (res * 10) + (nb[i] - '0');
+		nbr = 10 * nbr + (s1[i] - 48);
 		i++;
 	}
-	if (neg == 1)
-		res = res * -1;
-	return (res);
+	return (nbr * sign);
 }
-// #include <stdio.h>
-// #include <string.h>
-
-// int	main(void)
-// {
-// 	char nb[] = "  -124hj";
-// 	printf("Nour test -- -124 ----> %d\n", ft_atoi(nb) * 2);
-// 	printf("Vrai test -- -124 ----> %d\n", atoi(nb));
-// }

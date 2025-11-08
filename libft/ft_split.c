@@ -3,112 +3,95 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nsmail <nsmail@student.42.fr>              +#+  +:+       +#+        */
+/*   By: nkalkoul <nkalkoul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/01 15:30:42 by nsmail            #+#    #+#             */
-/*   Updated: 2025/06/16 19:58:05 by nsmail           ###   ########.fr       */
+/*   Created: 2024/06/02 06:02:55 by nas91             #+#    #+#             */
+/*   Updated: 2025/10/30 08:44:40 by nkalkoul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static void	free_all(char **tab)
+int	countw(const char *s, char c)
 {
-	size_t	i;
-
-	i = 0;
-	while (tab[i])
-	{
-		free(tab[i]);
-		i++;
-	}
-	free(tab);
-}
-
-static size_t	count_word(const char *s, char c)
-{
-	size_t	count;
-	size_t	i;
+	int	count;
+	int	i;
 
 	i = 0;
 	count = 0;
 	while (s[i])
 	{
-		while (s[i] && s[i] == c)
+		while (s[i] == c && s[i])
 			i++;
-		if (s[i] != c && s[i])
-		{
+		if (s[i])
 			count++;
-			while (s[i] != c && s[i])
-				i++;
-		}
+		while (s[i] != c && s[i])
+			i++;
 	}
 	return (count);
 }
 
-static char	*malloc_word(char *str, char c)
+unsigned int	countl(const char *s, char c, unsigned int start)
 {
-	size_t	len;
-	char	*new_str;
+	unsigned int	i;
 
-	len = 0;
-	while (*str == c)
-		str++;
-	while (str[len] != c && str[len] != '\0')
+	i = 0;
+	while (s[start] == c && s[start])
+		start++;
+	while (s[start] != c && s[start])
 	{
-		len++;
+		i++;
+		start++;
 	}
-	new_str = malloc(len + 1);
-	if (!new_str)
-		return (NULL);
-	ft_strlcpy(new_str, str, len + 1);
-	return (new_str);
+	return (i);
+}
+
+unsigned int	countstart(const char *s, char c, unsigned int start)
+{
+	while (s[start] != c && s[start])
+		start++;
+	while (s[start] == c && s[start])
+		start++;
+	return (start);
+}
+
+char	**ft_dothes(char **new, const char *s, char c, int count)
+{
+	int				i;
+	unsigned int	len;
+	unsigned int	start;
+
+	start = 0;
+	i = 0;
+	while (s[start] && s[start] == c)
+		start++;
+	while (i < count)
+	{
+		len = countl(s, c, start);
+		new[i] = ft_substr(s, start, len);
+		if (new[i] == NULL)
+		{
+			while (i >= 0)
+				free(new[i--]);
+			free(new);
+			return (NULL);
+		}
+		i++;
+		start = countstart(s, c, start);
+	}
+	new[i] = NULL;
+	return (new);
 }
 
 char	**ft_split(char const *s, char c)
 {
-	char	**tab_g;
-	size_t	i;
+	char			**new;
+	int				count;
 
-	tab_g = malloc(sizeof(char *) * (count_word(s, c) + 1));
-	if (!tab_g)
+	count = countw(s, c);
+	new = malloc(sizeof(char *) * (count + 1));
+	if (new == NULL)
 		return (NULL);
-	tab_g[count_word(s, c)] = NULL;
-	i = 0;
-	while (*s)
-	{
-		while (*s && *s == c)
-			s++;
-		while (*s && *s != c)
-		{
-			tab_g[i] = malloc_word((char *)s, c);
-			if (!tab_g[i])
-				return (free_all(tab_g), NULL);
-			while (*s && *s != c)
-				s++;
-		}
-		i++;
-	}
-	return (tab_g);
+	new = ft_dothes(new, s, c, count);
+	return (new);
 }
-
-// #include <stdio.h>
-
-// int	main(void)
-// {
-// 	char	str[] = "lorem ipsum c Suspendisse";
-// 	char	c;
-// 	char	**res;
-// 	size_t	i;
-
-// 	c = ' ';
-// 	res = ft_split(str, c);
-// 	i = 0;
-// 	printf("%zu\n", count_word(str, c));
-// 	while (res[i])
-// 	{
-// 		printf("tab[%zu] = %s\n", i, res[i]);
-// 		i++;
-// 	}
-// 	return (0);
-// }

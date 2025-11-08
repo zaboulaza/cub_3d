@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nsmail <nsmail@student.42.fr>              +#+  +:+       +#+        */
+/*   By: nkalkoul <nkalkoul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/27 19:34:59 by nsmail            #+#    #+#             */
-/*   Updated: 2025/05/05 18:11:32 by nsmail           ###   ########.fr       */
+/*   Created: 2024/05/30 00:04:09 by nas91             #+#    #+#             */
+/*   Updated: 2024/05/31 18:59:24 by nkalkoul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,27 +14,14 @@
 
 void	*ft_memchr(const void *s, int c, size_t n)
 {
-	unsigned char	*s1;
+	size_t	i;
 
-	s1 = (unsigned char *)s;
-	while (n--)
+	i = 0;
+	while (i < n)
 	{
-		if (*s1 == (unsigned char)c)
-			return (s1);
-		s1++;
+		if (*(unsigned char *)(s + i) == (unsigned char)c)
+			return ((void *)(s + i));
+		i++;
 	}
 	return (NULL);
 }
-// #include <stdio.h>
-// #include <string.h>
-
-// int	main(void)
-// {
-// 	unsigned char s[] = "je suis la t'es ou toi ?";
-
-// 	printf("nour test ----> %p\n", ft_memchr(s, 's', 9));
-// 	printf("vrai test ----> %p\n", memchr(s, 's', 9));
-
-//     printf("nour test ----> %s\n", (char *)ft_memchr(s, 's', 9));
-// 	printf("vrai test ----> %s\n", (char *)memchr(s, 's', 9));
-// }

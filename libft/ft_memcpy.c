@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memcpy.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nsmail <nsmail@student.42.fr>              +#+  +:+       +#+        */
+/*   By: nkalkoul <nkalkoul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/26 20:30:09 by nsmail            #+#    #+#             */
-/*   Updated: 2025/05/05 18:02:30 by nsmail           ###   ########.fr       */
+/*   Created: 2024/05/24 16:52:53 by nkalkoul          #+#    #+#             */
+/*   Updated: 2024/05/28 14:11:06 by nkalkoul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,21 +14,15 @@
 
 void	*ft_memcpy(void *dest, const void *src, size_t n)
 {
-	unsigned char	*dest1;
+	size_t	i;
 
-	if (!dest && !src)
+	if (!dest || !src)
 		return (NULL);
-	dest1 = (unsigned char *)dest;
-	while (n--)
-		*dest1++ = *(unsigned char *)src++;
+	i = 0;
+	while (i < n)
+	{
+		*(unsigned char *)(dest + i) = *(unsigned char *)(src + i);
+		i++;
+	}
 	return (dest);
 }
-// #include <stdio.h>
-// int main()
-// {
-// 	char str[] = "bibibadabou";
-// 	char str1[125];
-
-// 	ft_memcpy(str1, str, 11);
-// 	printf("Nour test ----> %s\n", str1);
-// }

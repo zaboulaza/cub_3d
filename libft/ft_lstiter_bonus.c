@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lstiter_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nsmail <nsmail@student.42.fr>              +#+  +:+       +#+        */
+/*   By: nkalkoul <nkalkoul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/04 03:03:40 by nsmail            #+#    #+#             */
-/*   Updated: 2025/05/04 18:46:07 by nsmail           ###   ########.fr       */
+/*   Created: 2024/06/11 14:47:32 by nkalkoul          #+#    #+#             */
+/*   Updated: 2024/06/11 14:56:42 by nkalkoul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	ft_lstiter(t_list *lst, void (*f)(void *))
 {
 	while (lst != NULL)
 	{
-		f(lst->content);
-		lst = lst->next;
+		f(lst -> content);
+		lst = lst -> next;
 	}
 }

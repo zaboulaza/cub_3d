@@ -3,73 +3,66 @@
 /*                                                        :::      ::::::::   */
 /*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nsmail <nsmail@student.42.fr>              +#+  +:+       +#+        */
+/*   By: nkalkoul <nkalkoul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/30 19:06:29 by nsmail            #+#    #+#             */
-/*   Updated: 2025/05/05 17:34:12 by nsmail           ###   ########.fr       */
+/*   Created: 2024/06/04 00:56:03 by nas91             #+#    #+#             */
+/*   Updated: 2025/10/27 22:41:51 by nkalkoul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-size_t	count_int(long nb)
+int	ft_len(int n)
 {
-	size_t	nb_len;
+	int			cl;
+	long int	tmp;
 
-	nb_len = 1;
-	if (nb < 0)
+	cl = 1;
+	tmp = n;
+	if (n < 0)
 	{
-		nb_len++;
-		nb = -nb;
+		cl = 2;
+		tmp = -tmp;
 	}
-	while (nb > 9)
+	while (tmp > 9)
 	{
-		nb = nb / 10;
-		nb_len++;
+		tmp = tmp / 10;
+		cl++;
 	}
-	return (nb_len);
+	return (cl);
+}
+
+char	*ft_dothei(char *new, int n, int i)
+{
+	if (n == -2147483648)
+	{
+		n = 147483648;
+		new[0] = '-';
+		new[1] = '2';
+	}
+	if (n < 0)
+	{
+		new[0] = '-';
+		n = n * -1;
+	}
+	if (n > 9)
+	{
+		ft_dothei(new, n / 10, i - 1);
+	}
+	new[i] = n % 10 + '0';
+	return (new);
 }
 
 char	*ft_itoa(int n)
 {
-	long	nb;
-	size_t	n_len;
-	char	*nb_str;
+	int		cl;
+	char	*new;
 
-	nb = n;
-	n_len = count_int(nb);
-	nb_str = malloc(n_len + 1);
-	if (!nb_str)
+	cl = ft_len(n);
+	new = malloc(sizeof(char) * (cl + 1));
+	if (new == NULL)
 		return (NULL);
-	nb_str[n_len] = '\0';
-	if (nb < 0)
-	{
-		nb_str[0] = '-';
-		nb = -nb;
-	}
-	n_len = n_len - 1;
-	while (n_len > 0)
-	{
-		nb_str[n_len--] = (nb % 10) + '0';
-		nb = nb / 10;
-	}
-	if (n > 0 || n == 0)
-		nb_str[n_len] = (nb % 10) + '0';
-	return (nb_str);
+	ft_dothei(new, n, (cl - 1));
+	new[cl] = '\0';
+	return (new);
 }
-
-// #include <stdio.h>
-// int	main(void)
-// {
-// 	int n = -2147483648;
-// 	printf("Nour test ----> %s\n", ft_itoa(n));
-// }
-
-// char	*int_min_test(int nb)
-// {
-// 	if (nb == -2147483647)
-// 	{
-// 		return (ft_strdup("-2147483648"));
-// 	}
-// 	return (0);
-// }

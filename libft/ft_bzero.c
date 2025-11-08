@@ -3,32 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   ft_bzero.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nsmail <nsmail@student.42.fr>              +#+  +:+       +#+        */
+/*   By: nkalkoul <nkalkoul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/26 20:07:46 by nsmail            #+#    #+#             */
-/*   Updated: 2025/05/04 18:51:55 by nsmail           ###   ########.fr       */
+/*   Created: 2024/05/26 03:41:09 by nas91             #+#    #+#             */
+/*   Updated: 2024/05/28 14:08:03 by nkalkoul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_bzero(void *ptr, size_t n)
+void	ft_bzero(void *s, size_t n)
 {
-	while (n--)
-		*(unsigned char *)ptr++ = '\0';
+	while (n-- > 0)
+		*(char *)(s + n) = '\0';
 }
-// #include <string.h>
-// #include <stdio.h>
-
-// int main()
-// {
-//     unsigned char ptr[] = "zoubida zoubidou";
-
-//     printf("test a vide ----> %s\n", ptr);
-
-//     ft_bzero(ptr, sizeof(ptr));
-//     printf("Nour test a vide ----> %s\n", ptr);
-
-//     bzero(ptr, sizeof(ptr));
-//     printf("Vrai test a vide ----> %s\n", ptr);
-// }

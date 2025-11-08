@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nsmail <nsmail@student.42.fr>              +#+  +:+       +#+        */
+/*   By: nkalkoul <nkalkoul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/29 04:05:31 by nsmail            #+#    #+#             */
-/*   Updated: 2025/05/04 18:48:43 by nsmail           ###   ########.fr       */
+/*   Created: 2024/05/31 02:18:06 by nas91             #+#    #+#             */
+/*   Updated: 2025/10/27 22:41:51 by nkalkoul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,30 +14,20 @@
 
 char	*ft_strdup(const char *s)
 {
-	size_t	tailleg;
-	size_t	i;
-	char	*sdup;
+	char	*new;
+	size_t	lens;
+	int		i;
 
 	i = 0;
-	tailleg = ft_strlen(s);
-	sdup = malloc(tailleg + 1);
-	if (!sdup)
+	lens = ft_strlen(s) + 1;
+	new = malloc(sizeof(char) * lens);
+	if (new == NULL)
 		return (NULL);
-	while (i < tailleg)
+	while (s[i])
 	{
-		sdup[i] = s[i];
+		new[i] = s[i];
 		i++;
 	}
-	sdup[i] = '\0';
-	return (sdup);
+	new[i] = '\0';
+	return (new);
 }
-// #include <stdio.h>
-// #include <string.h>
-
-// int main()
-// {
-//     const char s[] = "trop nul";
-
-//     printf("Nour test -- trop nul ----> %s\n", ft_strdup(s));
-//     printf("Vrai test -- trop nul ----> %s\n", strdup(s));
-// }

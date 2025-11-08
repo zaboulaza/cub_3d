@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nsmail <nsmail@student.42.fr>              +#+  +:+       +#+        */
+/*   By: modavid <modavid@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/28 16:46:25 by nsmail            #+#    #+#             */
-/*   Updated: 2025/05/04 18:48:36 by nsmail           ###   ########.fr       */
+/*   Created: 2024/05/28 14:11:55 by nkalkoul          #+#    #+#             */
+/*   Updated: 2025/02/21 19:16:35 by modavid          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,21 +14,16 @@
 
 char	*ft_strchr(const char *s, int c)
 {
-	while (*s)
+	size_t	i;
+
+	i = 0;
+	while (s[i])
 	{
-		if (*s == (unsigned char)c)
-			return ((char *)s);
-		s++;
+		if (s[i] == c)
+			return ((char *)s + i);
+		i++;
 	}
-	if ((unsigned char)c == '\0')
-		return ((char *)s);
+	if (c == 0 && s[i] == 0)
+		return ((char *)s + i);
 	return (NULL);
 }
-// #include <stdio.h>
-// #include <string.h>
-
-// int	main(void)
-// {
-// 	printf("Nour -- test ----> %s\n", ft_strchr("le malicieux", 'm'));
-// 	printf("Nour -- test ----> %s\n", strchr("le malicieux", 'm'));
-// }

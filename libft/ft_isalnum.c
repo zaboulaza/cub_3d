@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_isalnum.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nsmail <nsmail@student.42.fr>              +#+  +:+       +#+        */
+/*   By: nkalkoul <nkalkoul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/26 13:25:55 by nsmail            #+#    #+#             */
-/*   Updated: 2025/05/04 19:44:50 by nsmail           ###   ########.fr       */
+/*   Created: 2024/05/20 16:47:45 by nkalkoul          #+#    #+#             */
+/*   Updated: 2024/05/23 20:57:16 by nkalkoul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,7 @@
 
 int	ft_isalnum(int c)
 {
-	if ((ft_isalpha(c)) || (ft_isdigit(c)))
+	if (ft_isalpha(c) == 1 || ft_isdigit(c) == 1)
 		return (1);
 	return (0);
 }
-// #include <stdio.h>
-// #include <ctype.h>
-// int main()
-// {
-// 	printf("Nour test -- 1 ----> %d\n", ft_isalnum('8'));
-// 	printf("Nour test -- 0 ----> %d\n", ft_isalnum('@'));
-
-// 	printf("Vrai test -- 1 ----> %d\n", isalnum('8'));
-// 	printf("Vrai test -- 0 ----> %d\n", isalnum('@'));
-
-// }

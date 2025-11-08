@@ -3,46 +3,39 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nsmail <nsmail@student.42.fr>              +#+  +:+       +#+        */
+/*   By: nkalkoul <nkalkoul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/29 21:33:51 by nsmail            #+#    #+#             */
-/*   Updated: 2025/06/16 20:00:37 by nsmail           ###   ########.fr       */
+/*   Created: 2024/06/02 03:54:32 by nas91             #+#    #+#             */
+/*   Updated: 2025/10/27 22:41:51 by nkalkoul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strjoin(char *s1, char const *s2)
+char	*ft_strjoin(char const *s1, char const *s2)
 {
-	size_t	tailleg;
-	int		i;
-	size_t	j;
-	char	*s3;
+	char	*new;
+	size_t	sizn;
+	size_t	sizs1;
+	size_t	sizs2;
 
-	if (!s1)
-		return (NULL);
-	tailleg = ft_strlen(s1) + ft_strlen(s2);
-	i = -1;
-	s3 = malloc(tailleg + 1);
-	if (!s3)
-		return (NULL);
-	while (s1[++i])
-		s3[i] = s1[i];
-	j = 0;
-	while (s2[j])
+	sizs1 = ft_strlen(s1);
+	sizs2 = ft_strlen(s2);
+	sizn = sizs1 + sizs2;
+	if (sizn < 1)
 	{
-		s3[i] = s2[j];
-		i++;
-		j++;
+		new = malloc(1);
+		if (new == NULL)
+			return (NULL);
+		new[0] = 0;
 	}
-	s3[i] = '\0';
-	free(s1);
-	return (s3);
+	else
+	{
+		new = malloc(sizeof(char) * (sizn + 1));
+		if (new == NULL)
+			return (NULL);
+		ft_strlcpy(new, s1, sizs1 + 1);
+		ft_strlcat(new, s2, sizn + 1);
+	}
+	return (new);
 }
-// #include <stdio.h>
-// int	main(void)
-// {
-// 	const char s1[] = "nul le ";
-// 	const char s2[] = "lampadaire";
-// 	printf("Nour test -- nul le lampadaire ----> %s\n", ft_strjoin(s1, s2));
-// }

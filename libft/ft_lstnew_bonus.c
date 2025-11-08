@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lstnew_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nsmail <nsmail@student.42.fr>              +#+  +:+       +#+        */
+/*   By: nkalkoul <nkalkoul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/02 19:27:19 by nsmail            #+#    #+#             */
-/*   Updated: 2025/05/04 18:46:43 by nsmail           ###   ########.fr       */
+/*   Created: 2024/06/10 13:56:12 by nkalkoul          #+#    #+#             */
+/*   Updated: 2025/10/27 22:41:51 by nkalkoul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,17 +16,10 @@ t_list	*ft_lstnew(void *content)
 {
 	t_list	*new;
 
-	new = malloc(sizeof(t_list));
+	new = malloc(sizeof(*new));
 	if (!new)
 		return (NULL);
-	new->content = content;
-	new->next = NULL;
+	new -> content = content;
+	new -> next = NULL;
 	return (new);
 }
-// #include <stdio.h>
-// int main()
-// {
-// 	char *str = "salut";
-// 	t_list *new = ft_lstnew((char *)str);
-// 	printf("Nour test ----> %s\n", (char *)new->content);
-// }

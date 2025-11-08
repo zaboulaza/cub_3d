@@ -3,42 +3,26 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strlcpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nsmail <nsmail@student.42.fr>              +#+  +:+       +#+        */
+/*   By: nkalkoul <nkalkoul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/28 12:30:21 by nsmail            #+#    #+#             */
-/*   Updated: 2025/05/04 18:49:21 by nsmail           ###   ########.fr       */
+/*   Created: 2024/05/22 15:59:46 by nas91             #+#    #+#             */
+/*   Updated: 2025/10/30 04:13:42 by nkalkoul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-size_t	ft_strlcpy(char *dest, const char *src, size_t size)
+size_t	ft_strlcpy(char *dest, const char *src, size_t dstsize)
 {
 	size_t	i;
-	size_t	src_len;
 
 	i = 0;
-	src_len = ft_strlen(src);
-	if (size == 0)
-		return (src_len);
-	size = size - 1;
-	while (size-- && src[i])
+	while (src[i] && (i < (dstsize - 1) && dstsize > 0))
 	{
 		dest[i] = src[i];
 		i++;
 	}
-	dest[i] = '\0';
-	return (src_len);
+	if (dstsize > 0)
+		dest[i] = '\0';
+	return (ft_strlen(src));
 }
-
-// #include <stdio.h>
-// #include <string.h>
-// int	main(void)
-// {
-// 	char dest[50];
-// 	const char src[] = "je vais bruler la poste";
-// 	printf("Nour test -- je vais bruler la poste ----> %ld\n", ft_strlcpy(dest,
-// src, 7));
-//     ft_strlcpy(dest, src, 7);
-// 	printf("Nour test -- je vais bruler la poste ----> %s\n", dest);
-// }

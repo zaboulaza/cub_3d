@@ -3,32 +3,22 @@
 /*                                                        :::      ::::::::   */
 /*   ft_calloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nsmail <nsmail@student.42.fr>              +#+  +:+       +#+        */
+/*   By: nkalkoul <nkalkoul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/29 01:30:21 by nsmail            #+#    #+#             */
-/*   Updated: 2025/05/05 18:14:06 by nsmail           ###   ########.fr       */
+/*   Created: 2024/05/31 00:49:38 by nas91             #+#    #+#             */
+/*   Updated: 2025/10/27 22:41:51 by nkalkoul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_calloc(size_t nmenb, size_t size)
+void	*ft_calloc(size_t ncount, size_t siz)
 {
-	void	*str;
-	size_t	tailleg;
+	void	*ptr;
 
-	tailleg = nmenb * size;
-	str = malloc(tailleg);
-	if (!str)
+	ptr = malloc(siz * ncount);
+	if (ptr == NULL)
 		return (NULL);
-	ft_bzero(str, tailleg);
-	return (str);
+	ft_bzero(ptr, ncount * siz);
+	return (ptr);
 }
-// #include <stdio.h>
-// #include <string.h>
-
-// int	main(void)
-// {
-// 	printf("Nour test -- vide ----> %s\n", (char *)ft_calloc(5, sizeof(char)));
-// 	printf("Vrai test -- vide ----> %s\n", (char *)calloc(5, sizeof(char)));
-// }
